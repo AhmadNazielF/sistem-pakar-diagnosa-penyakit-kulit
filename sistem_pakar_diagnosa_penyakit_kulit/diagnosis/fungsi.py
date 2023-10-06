@@ -26,25 +26,40 @@ class dict:
         return result_dict 
     
 class chainFowarding:
-    def chainFowarding(rules,input):
-        penyakit_sesuai.clear()
-        for penyakit, gejala_penyakit in rules.items():
-            if all(gejala_k in input for gejala_k in gejala_penyakit):
-                penyakit_sesuai.append(penyakit)
+    penyakit_sesuai = []  # Define penyakit_sesuai as a class variable
 
-        # Menampilkan hasil chain forwarding
-        if penyakit_sesuai:
-            print("Berdasarkan gejala yang Anda berikan, kemungkinan penyakit medis yang sesuai adalah:")
-            for penyakit in penyakit_sesuai:
-                print(f"- {penyakit}")
+    @classmethod
+    def chainFowarding(cls, rules, input):
+        cls.penyakit_sesuai.clear()
+        penyakit_percentage = {}
+        maxPercentage = 0
+
+        for penyakit, gejala_penyakit in rules.items():
+            matching_gejala = [gejala_k for gejala_k in gejala_penyakit if gejala_k in input]
+            percentage = (len(matching_gejala) / len(gejala_penyakit)) * 100
+
+            penyakit_percentage[penyakit] = percentage
+
+            if percentage > maxPercentage:
+                cls.penyakit_sesuai.clear()  # Clear the list when a higher percentage is found
+                cls.penyakit_sesuai.append(penyakit)
+                maxPercentage = percentage
+            
+            elif percentage == maxPercentage:
+                # If the percentage is equal to the max, append the current penyakit to the list
+                cls.penyakit_sesuai.clear()
+
+        # Menampilkan hasil chain forwarding dengan presentase
+        if cls.penyakit_sesuai:
+            print("Berdasarkan gejala yang Anda berikan, penyakit medis yang paling mungkin adalah:")
+            for penyakit in cls.penyakit_sesuai:
+                print(f"- {penyakit} ({penyakit_percentage[penyakit]:.2f}% matching)")
         else:
             print("Tidak dapat menentukan penyakit medis berdasarkan gejala yang diberikan.")
 
-    def getPenyakit():
-        if penyakit_sesuai:
-            penyakit = penyakit_sesuai[0]
-            return penyakit
+    @classmethod
+    def getPenyakit(cls):
+        if cls.penyakit_sesuai:
+            return cls.penyakit_sesuai[0]  # Return the first element (highest percentage)
         else:
-            penyakit = ""
-            return penyakit
-         
+            return ""
