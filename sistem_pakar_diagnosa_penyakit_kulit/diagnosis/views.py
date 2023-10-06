@@ -10,18 +10,21 @@ def home(request):
     return render(request, 'main/main.html')
     
 def form(request):
+    inputGejala = []  # Initialize as an empty list
+    rules = []
     if request.method == 'POST':
         inputGejala = None
         if inputGejala:
             inputGejala.pop()
         else:
-            rules = basisPengetauan.objects.all()
-            gejala = Gejala.objects.all()
+            for item in basisPengetauan.objects.all():
+                rules.append(item)
+
             rule = str(rules)
-            #rule = {a.Penyakit: a.gejala for a in rules}
+            
+            gejala = Gejala.objects.all()
             inputGejala = request.POST.getlist('input_gejala')
             dict.dict(rule)
-            print(inputGejala)
             chainFowarding.chainFowarding(dict.getDict(),inputGejala)
             request.session['penyakit'] = chainFowarding.getPenyakit()
 

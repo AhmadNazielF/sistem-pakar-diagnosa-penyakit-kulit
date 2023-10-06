@@ -1,40 +1,33 @@
-data_dict = {}
+import re
+
+result_dict = {}
 penyakit_sesuai = []
 
 class dict:
   
 # Memproses setiap elemen dalam data_pengetahuan
     def dict(rules):
-        queryset_str = str(rules)
-        # Remove unnecessary characters and split the string into individual records
-        queryset_str = queryset_str.replace("<QuerySet [", "").replace("]>", "").replace("<basisPengetauan: ", "").replace(", <basisPengetauan: ","").replace('>', '')
-        records = queryset_str.split(', ')
+        # Memisahkan string menjadi item-item
+        pattern = r'<basisPengetauan: (\w+) : ([^>]+)>'
+        matches = re.findall(pattern, rules)
 
-        print(records)
-            
-# Iterasi melalui setiap elemen dalam list
-        for item in records:
-            # Pisahkan elemen menjadi penyakit dan gejala
-            parts = item.split(' : ')
-            
-            if len(parts) == 2:
-                penyakit, gejala = parts
-                penyakit = penyakit.strip()
-                # Jika penyakit belum ada di dictionary, tambahkan sebagai kunci dengan daftar gejala
-                if penyakit not in data_dict :
-                    data_dict [penyakit] = [gejala]
-                else:
-                    data_dict [penyakit].append(gejala)
+        # Melakukan pengelompokan berdasarkan penyakit
+        for match in matches:
+            disease = match[0].strip()
+            symptom = match[1].strip()
+            if disease not in result_dict:
+                result_dict[disease] = [symptom]
             else:
-                # Jika ada elemen tambahan yang bukan gejala, gabungkan dengan gejala sebelumnya
-                data_dict [penyakit][-1] += f', {item}'
+                result_dict[disease].append(symptom)
+
+        print(result_dict)
 
     def getDict():
-        return data_dict 
+        return result_dict 
     
 class chainFowarding:
     def chainFowarding(rules,input):
-        
+        penyakit_sesuai.clear()
         for penyakit, gejala_penyakit in rules.items():
             if all(gejala_k in input for gejala_k in gejala_penyakit):
                 penyakit_sesuai.append(penyakit)
