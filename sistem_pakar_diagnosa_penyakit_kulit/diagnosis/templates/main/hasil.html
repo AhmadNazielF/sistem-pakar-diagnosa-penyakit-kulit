@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container d-flex mbc m-auto align-items-center flex-column mch ">
+    <div class="form w-75">
+        <div class="form_atas fs-5 fw-bolder ">Hasil diagnosis dari inputan anda</div>
+        {% if data %}
+            {%for item in penyakit%}
+            <div class="hasil p-3">
+                <div class="penyakit fw-bolder">Anda Memiliki Penyakit : {{ item.namaPenyakit }}</div>
+                <p class="fw-bolder mb-md-0">Solusi yang relevan:</p>
+                <div class="solusi">{{ item.solusi }}</div>
+            </div>
+            {%endfor%}
+        {% else %}
+        <div class="hasil fw-bolder ">
+            <p class="text-center">Tidak dapat Mencocokan gejala dalam database kami</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="w-75">   
+         <a class="btn btn-brown px-3 mt-2 mx-4 float-end " href="/sistem-pakar-diagnosa-penyakit-kulit/">kembali</a>
+    </div>
+
+</div>
+{% endblock content %}

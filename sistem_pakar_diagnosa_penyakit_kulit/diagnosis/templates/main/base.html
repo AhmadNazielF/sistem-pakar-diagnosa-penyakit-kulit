@@ -1,0 +1,56 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sitem Pakar Dianogsa Penyakit Kulit</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="/static/style.css" rel="stylesheet">
+
+  </head>
+<body>
+<div class="header pt-2 px-2">
+  <a class="mx-3" href="/sistem-pakar-diagnosa-penyakit-kulit/"><p class="fs-5 fw-bolder"> Skin Analyzer</p></a>
+  <a class=" mx-2 fs-6 fw-bolder" href="#about">About</a>
+</div>
+<main class="w-100">
+  {% block content %}
+  {% endblock %}
+</main>
+
+<div class="bawah">  <div class="container m-auto pbc " id="about">
+  <div class="about d-grid justify-content-center m-4 " >
+      <p class="fs-3 fw-bolder" style="color: rgb(255, 238, 0);">Skin Analyzer 2023</p>
+      <p class="fs-1 fw-bolder">APA ITU SKIN ANALYZER</p>
+    <div class="w-100 text-about">
+      <p class="fs-5">skin analyzer merupakan suatu sistem pakar yang dibuat untuk melakukan pendiagnosaan penyakit kulit. 
+        Dengan menggunakan sistem ini para user dapat memilih gejala yang dialami dan akan memberi solusi yang 
+        relevan terhadap gejala tersebut.
+      </p>
+    </div>
+    <a class="btn btn-brown px-3 m-auto" href="/sistem-pakar-diagnosa-penyakit-kulit/form/" role="button">Mulai Diagnosa</a>
+  </div>
+</div>
+
+  <footer class="w-100 text-center text-white" style="background-color: #f1f1f1;">
+  <!-- Grid container -->
+  <div class="pt-4">
+    <!-- Section: Social media -->
+    <section class="mb-4">
+      <h1>Imagine Sisyphus Happy</h1>
+    </section>
+    <!-- Section: Social media -->>
+  
+    <!-- Copyright -->
+    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 Copyright:
+      <a class="text-dark" href="https://mdbootstrap.com/">NZL</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+    
+  </div>
+  <!-- End of .container --></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>

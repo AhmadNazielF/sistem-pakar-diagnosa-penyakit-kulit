@@ -1,0 +1,27 @@
+{% extends "main/base.html" %}
+{% block content %}
+<div class="container d-flex mbc m-auto align-items-center flex-column ">
+    <div class="form w-75">
+        <div class="form_atas fs-5 fw-bolder ">Centang gejala yang ada miliki</div>
+        <form method="post" autocomplete="off">
+            {% csrf_token %}
+                {% for gejala in gejala %}
+                <ul>
+                    <li>                    
+                        <input type="checkbox" value="{{ gejala }}" id="{{ gejala }}" name="input_gejala">
+                        <label for="{{ gejala }}">{{ gejala }}</label>
+                    </li>
+                </ul>
+                {% endfor %}
+            <div>
+                {{ rule }}
+            </div>
+            <hr class="m-4">
+            <div class="button px-3">
+                <button class="btn btn-brown px-3 m-auto"  type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+<div class="container mc m-auto"></div>
+
+{% endblock content %}
